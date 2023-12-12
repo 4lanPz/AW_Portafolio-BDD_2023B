@@ -5,6 +5,8 @@ const path = require('path');
 // Importar handlebars
 const { engine }  = require('express-handlebars')
 
+const methodOverride = require('method-override');
+
 // Inicializaciones
 // Instanciar Express
 const app = express()
@@ -31,6 +33,7 @@ app.engine('.hbs',engine({
 app.set('view engine','.hbs')
 
 // Middlewares
+app.use(methodOverride('_method'))
 // app.use(express.json())
 // Servidor va a trabajar con información en base a formularios
 app.use(express.urlencoded({extended:false}))
@@ -45,11 +48,12 @@ app.get('/',(req,res)=>{
     res.render("index")
 })
 // Ruta 2
-app.use(require('./routers/index.routers.js'))
+app.use(require('./routers/index.routes.js'))
 
 // Archivos estáticos
 // Definir archivos estáticos y públicos
 app.use(express.static(path.join(__dirname,'public')))
 
+app.use(require('./routers/portafolio.routes'))
 // Exportar la variable app
 module.exports = app
