@@ -16,7 +16,6 @@ const {renderIndex,renderLogin} = require('../controllers/index.controllers')
 
 
 router.get('/',renderIndex)
-router.get('/login',renderLogin)
 
 
 module.exports = router
