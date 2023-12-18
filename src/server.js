@@ -7,7 +7,11 @@ const { engine }  = require('express-handlebars')
 
 const methodOverride = require('method-override');
 
+const passport = require('passport');
+const session = require('express-session');
+
 // Inicializaciones
+require('./config/passport')
 // Instanciar Express
 const app = express()
 
@@ -38,8 +42,20 @@ app.use(methodOverride('_method'))
 // Servidor va a trabajar con información en base a formularios
 app.use(express.urlencoded({extended:false}))
 
+app.use(session({ 
+    secret: 'secret',
+    resave:true,
+    saveUninitialized:true
+}));
+app.use(passport.initialize())
+app.use(passport.session())
+
 
 // Variables globales
+app.use((req,res,next)=>{
+    res.locals.user = req.user?.name || null
+    next()
+})
 
 // Rutas
 // Primera Ruta
@@ -49,6 +65,8 @@ app.get('/',(req,res)=>{
 })
 // Ruta 2
 app.use(require('./routers/index.routes.js'))
+// Ruta 3
+app.use(require('./routers/user.routes'))
 
 // Archivos estáticos
 // Definir archivos estáticos y públicos
@@ -56,4 +74,16 @@ app.use(express.static(path.join(__dirname,'public')))
 
 app.use(require('./routers/portafolio.routes'))
 // Exportar la variable app
+
+// Middlewares 
+
+app.use(session({ 
+    secret: 'secret',
+    resave:true,
+    saveUninitialized:true
+}));
+app.use(passport.initialize())
+app.use(passport.session())
+
+
 module.exports = app
