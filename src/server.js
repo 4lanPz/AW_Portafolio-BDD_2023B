@@ -4,11 +4,10 @@ const express = require('express')
 const path = require('path');
 // Importar handlebars
 const { engine }  = require('express-handlebars')
-
 const methodOverride = require('method-override');
-
 const passport = require('passport');
 const session = require('express-session');
+const fileUpload = require('express-fileupload')
 
 // Inicializaciones
 require('./config/passport')
@@ -56,6 +55,11 @@ app.use((req,res,next)=>{
     res.locals.user = req.user?.name || null
     next()
 })
+
+app.use(fileUpload({
+    useTempFiles : true,
+    tempFileDir : './uploads'
+}));
 
 // Rutas
 // Primera Ruta

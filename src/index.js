@@ -1,6 +1,6 @@
+require('dotenv').config()
 // Importar la variable app
 const app = require('./server.js')
-require('dotenv').config()
 // Importar el método connection
 const connection = require('./database.js')
 
