@@ -1,16 +1,16 @@
-const Portfolio = require('../models/portafolio')
+const Portfolio = require('../models/Portfolio')
 
 const renderIndex = async(req,res)=>{
     const portfolios = await Portfolio.find().lean()
     res.render('index',{portfolios})
 }
 
-const renderLogin = (req,res)=>{
+const renderAbout = (req,res)=>{
     res.render('login')
 }
 
 
 module.exports ={
     renderIndex, 
-    renderLogin
+    renderAbout
 }

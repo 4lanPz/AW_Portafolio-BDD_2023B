@@ -1,13 +1,15 @@
-const User = require('../models/user')
+const User = require('../models/User')
 const passport = require("passport")
 const { sendMailToUser } = require("../config/nodemailer")
+
+
 
 const renderRegisterForm =(req,res)=>{
     res.render('user/registerForm')
 }
 
-
 const registerNewUser = async(req,res)=>{
+    
     const{name,email,password,confirmpassword} = req.body
     if (Object.values(req.body).includes("")) return res.send("Lo sentimos, debes llenar todos los campos")
     if(password != confirmpassword) return res.send("Lo sentimos, los passwords no coinciden")
@@ -21,6 +23,7 @@ const registerNewUser = async(req,res)=>{
     res.redirect('/user/login')
 }
 
+
 const renderLoginForm =(req,res)=>{
     res.render('user/loginForm')
 }
@@ -30,12 +33,15 @@ const loginUser = passport.authenticate('local',{
     successRedirect:'/portafolios'
 })
 
+
 const logoutUser =(req,res)=>{
     req.logout((err)=>{
         if (err) return res.send("Ocurrio un error") 
         res.redirect('/');
     });
 }
+
+
 const confirmEmail = async(req,res)=>{
     if(!(req.params.token)) return res.send("Lo sentimos, no se puede validar la cuenta")
     const userBDD = await User.findOne({token:req.params.token})
@@ -44,6 +50,7 @@ const confirmEmail = async(req,res)=>{
     await userBDD.save()
     res.send('Token confirmado, ya puedes iniciar sesión');
 }
+
 
 module.exports={
     renderRegisterForm,

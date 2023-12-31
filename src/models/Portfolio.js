@@ -18,8 +18,8 @@ const portfolioSchema = new Schema({
         required:true
     },
     image:{
-        public_id:String,
-        secure_url:String
+    public_id:String,
+    secure_url:String
     }
 },{
     timestamps:true

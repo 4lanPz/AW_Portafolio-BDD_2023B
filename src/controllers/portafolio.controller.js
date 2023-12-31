@@ -1,11 +1,13 @@
-const Portfolio = require('../models/portafolio')
+const Portfolio = require('../models/Portfolio')
 const { uploadImage,deleteImage } = require('../config/cloudinary')
 const fs = require('fs-extra')
+
 
 const renderAllPortafolios = async(req,res)=>{
     const portfolios = await Portfolio.find({user:req.user._id}).lean()
     res.render("portafolio/allPortfolios",{portfolios})
 }
+
 
 const renderPortafolio = (req,res)=>{
     res.send('Mostrar el detalle de un portafolio')
@@ -16,7 +18,7 @@ const renderPortafolioForm = (req,res)=>{
 }
 
 const createNewPortafolio =async (req,res)=>{
-    const {title, category,description} = req.body   
+    const {title, category,description} = req.body
     const newPortfolio = new Portfolio({title,category,description})
     newPortfolio.user = req.user._id
     if(!(req.files?.image)) return res.send("Se requiere una imagen")
@@ -30,10 +32,13 @@ const createNewPortafolio =async (req,res)=>{
     res.redirect('/portafolios')
 }
 
+
 const renderEditPortafolioForm =async(req,res)=>{
     const portfolio = await Portfolio.findById(req.params.id).lean()
     res.render('portafolio/editPortfolio',{portfolio})
 }
+
+
 const updatePortafolio = async(req,res)=>{
     const portfolio = await Portfolio.findById(req.params.id).lean()
     if(portfolio._id != req.params.id) return res.redirect('/portafolios')
@@ -61,16 +66,12 @@ const updatePortafolio = async(req,res)=>{
     res.redirect('/portafolios')
 }
 
+
 const deletePortafolio = async(req,res)=>{
     const portafolio = await Portfolio.findByIdAndDelete(req.params.id)
     await deleteImage(portafolio.image.public_id)
     res.redirect('/portafolios')
 }
-
-
-
-
-
 
 
 module.exports ={
@@ -82,6 +83,3 @@ module.exports ={
     updatePortafolio,
     deletePortafolio
 }
-
-
-
