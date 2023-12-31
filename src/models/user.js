@@ -12,6 +12,14 @@ const userSchema = new Schema({
     password :{
         type:String,
         require:true
+    },
+    token:{
+        type:String,
+        default:null
+    },
+    confirmEmail:{
+        type:Boolean,
+        default:false
     }
 },{
     timestamps:true
@@ -33,5 +41,9 @@ userSchema.methods.matchPassword = async function(password){
     return response
 }
 
+// Método para crear un token 
+userSchema.methods.crearToken = function(){
+    return token = this.token = Math.random().toString(36).slice(2)
+}
 
 module.exports = model('user',userSchema)

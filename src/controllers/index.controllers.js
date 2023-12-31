@@ -1,6 +1,8 @@
+const Portfolio = require('../models/portafolio')
 
-const renderIndex = (req,res)=>{
-    res.render('index')
+const renderIndex = async(req,res)=>{
+    const portfolios = await Portfolio.find().lean()
+    res.render('index',{portfolios})
 }
 
 const renderLogin = (req,res)=>{
