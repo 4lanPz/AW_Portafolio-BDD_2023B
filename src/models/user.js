@@ -25,11 +25,11 @@ confirmEmail:{
     timestamps:true
 })
 
+
 // Método para crear un token 
 userSchema.methods.crearToken = function(){
     return token = this.token = Math.random().toString(36).slice(2)
 }
-
 
 // Método para cifrar el password del usuario
 userSchema.methods.encrypPassword = async (password)=>{
@@ -44,5 +44,4 @@ userSchema.methods.matchPassword = async function(password){
     return response
 }
 
-
-module.exports = model('user',userSchema)
+module.exports = model('User',userSchema)
