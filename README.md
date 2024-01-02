@@ -48,3 +48,9 @@ Este proyecto utiliza Node.js, Express.js, Nodemailer, MongoDB, Formsubmit.co, P
 
 ![image](https://github.com/4lanPz/AW_Portafolio-BDD_2023B/assets/117743495/eb3c63e5-f990-4230-8365-f07cd38e42c4)
 
+![image](https://github.com/4lanPz/AW_Portafolio-BDD_2023B/assets/117743495/1dfa2fe2-4439-46f1-88a7-f10ec1a01071)
+
+![image](https://github.com/4lanPz/AW_Portafolio-BDD_2023B/assets/117743495/ca54cf26-170f-4b1c-9588-50472f1c685c)
+
+
+
