@@ -37,6 +37,7 @@ Este proyecto utiliza Node.js, Express.js, Nodemailer, MongoDB, Formsubmit.co, P
 4. Se configura los comandos de ejecucion en Render y el archivo principal del proyecto.
 5. Hacer el deploy,
 6. Probar el link generado de Render para pode rusar en cualquier dispositivo.
+7. https://portafolio-web-jy0n.onrender.com
 
 ## Configuración del Proyecto en local
 
@@ -45,4 +46,5 @@ Este proyecto utiliza Node.js, Express.js, Nodemailer, MongoDB, Formsubmit.co, P
 3. Configura las variables de entorno para servicios externos en un archivo '.env', ejemplo en '.env.example'
 4. Ejecuta la aplicación con `npm start`.
 
+![image](https://github.com/4lanPz/AW_Portafolio-BDD_2023B/assets/117743495/eb3c63e5-f990-4230-8365-f07cd38e42c4)
 
